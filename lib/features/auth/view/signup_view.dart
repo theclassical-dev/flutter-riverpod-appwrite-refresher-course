@@ -2,31 +2,25 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:riverpod_twitter_course/common/common.dart';
 import 'package:riverpod_twitter_course/constants/constants.dart';
-import 'package:riverpod_twitter_course/features/auth/view/signup_view.dart';
+import 'package:riverpod_twitter_course/features/auth/view/login_view.dart';
 import 'package:riverpod_twitter_course/features/auth/widgets/auth_field.dart';
-import 'package:riverpod_twitter_course/theme/theme.dart';
 
-class LoginView extends StatefulWidget {
+import '../../../theme/theme.dart';
+
+class SignUpView extends StatefulWidget {
   static route() => MaterialPageRoute(
-        builder: ((context) => const LoginView()),
+        builder: ((context) => const SignUpView()),
       );
-  const LoginView({super.key});
+  const SignUpView({super.key});
 
   @override
-  State<LoginView> createState() => _LoginViewState();
+  State<SignUpView> createState() => _SignUpViewState();
 }
 
-class _LoginViewState extends State<LoginView> {
+class _SignUpViewState extends State<SignUpView> {
   final appbar = UIConstants.appBar();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-
-  @override
-  void dispose() {
-    super.dispose();
-    emailController.dispose();
-    passwordController.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -72,20 +66,20 @@ class _LoginViewState extends State<LoginView> {
               //text
               RichText(
                   text: TextSpan(
-                      text: "Dont have an account?",
+                      text: "Already have an account?",
                       style: const TextStyle(
                         fontSize: 16,
                       ),
                       children: [
                     TextSpan(
-                      text: ' Sign Up',
+                      text: ' Sign In',
                       style: const TextStyle(
                         color: Pallete.blueColor,
                         fontSize: 16,
                       ),
                       recognizer: TapGestureRecognizer()
                         ..onTap = () {
-                          Navigator.push(context, SignUpView.route());
+                          Navigator.push(context, LoginView.route());
                         },
                     ),
                   ]))

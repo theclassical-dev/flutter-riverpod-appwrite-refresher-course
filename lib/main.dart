@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:riverpod_twitter_course/features/auth/view/signup_view.dart';
 import 'package:riverpod_twitter_course/theme/theme.dart';
 
 import 'features/auth/view/login_view.dart';
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: AppTheme.theme,
       debugShowCheckedModeBanner: false,
-      home: const LoginView(),
+      home: const SignUpView(),
     );
   }
 }
