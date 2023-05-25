@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_twitter_course/features/auth/view/signup_view.dart';
 import 'package:riverpod_twitter_course/theme/theme.dart';
 
-import 'features/auth/view/login_view.dart';
-
 void main() {
-  runApp(const MyApp());
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
