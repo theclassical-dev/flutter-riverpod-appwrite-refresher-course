@@ -27,12 +27,28 @@ abstract class IAUthAPI {
     required String email,
     required String password,
   });
+
+  Future<User?> currentUserAccount();
 }
 
 class AuthAPI implements IAUthAPI {
   final Account _account;
 
   AuthAPI({required Account account}) : _account = account;
+
+//current user note
+//since we are using future provider can't use future either
+//current user account here can be token in an api call that is stored in flutter storage
+  @override
+  Future<User?> currentUserAccount() async {
+    try {
+      return _account.get();
+    } on AppwriteException catch (e) {
+      return null;
+    } catch (e) {
+      return null;
+    }
+  }
 
   @override
   FutureEither<User> signUp(
