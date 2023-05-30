@@ -42,8 +42,8 @@ class AuthAPI implements IAUthAPI {
   @override
   Future<User?> currentUserAccount() async {
     try {
-      return _account.get();
-    } on AppwriteException catch (e) {
+      return await _account.get();
+    } on AppwriteException {
       return null;
     } catch (e) {
       return null;
