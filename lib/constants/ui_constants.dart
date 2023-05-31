@@ -15,4 +15,10 @@ class UIConstants {
       centerTitle: true,
     );
   }
+
+  static List<Widget> bottomTabBarPages = [
+    const Text('first screen'),
+    const Text('second screen'),
+    const Text('third screen'),
+  ];
 }

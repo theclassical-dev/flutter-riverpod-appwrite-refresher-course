@@ -2,7 +2,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_twitter_course/common/common.dart';
-import 'package:riverpod_twitter_course/common/loading_page.dart';
 import 'package:riverpod_twitter_course/constants/constants.dart';
 import 'package:riverpod_twitter_course/features/auth/controller/auth_controller.dart';
 import 'package:riverpod_twitter_course/features/auth/view/signup_view.dart';
