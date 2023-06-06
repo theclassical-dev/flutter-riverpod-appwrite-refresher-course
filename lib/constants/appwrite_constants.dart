@@ -5,4 +5,8 @@ class AppwriteConstants {
 
   static const String userCollections = '64771476559d329b9d8f';
   static const String tweetCollections = '6478b5afd6fc47497c79';
+  static const String imagesBucket = '647efe031e2986ab8eac';
+
+  static String imageUrl(String imageId) =>
+      '$endpoint/v1/storage/buckets/$imagesBucket/files/$imageId/view?project=$projectId&mode=admin';
 }
