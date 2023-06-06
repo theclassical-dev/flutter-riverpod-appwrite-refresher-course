@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:riverpod_twitter_course/features/tweet/widgets/tweet_list.dart';
 import 'package:riverpod_twitter_course/theme/theme.dart';
 
 import 'constants.dart';
@@ -17,7 +18,7 @@ class UIConstants {
   }
 
   static List<Widget> bottomTabBarPages = [
-    const Text('first screen'),
+    const TweetList(),
     const Text('second screen'),
     const Text('third screen'),
   ];
