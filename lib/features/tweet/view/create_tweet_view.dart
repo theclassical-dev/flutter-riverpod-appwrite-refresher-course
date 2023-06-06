@@ -105,17 +105,17 @@ class _CreateTweetScreenState extends ConsumerState<CreateTweetScreen> {
                   ),
                   if (images.isNotEmpty)
                     CarouselSlider(
-                        items: images.map(
-                          (file) {
-                            return Container(
-                                width: MediaQuery.of(context).size.width,
-                                margin:
-                                    const EdgeInsets.symmetric(horizontal: 5),
-                                child: Image.file(file));
-                          },
-                        ).toList(),
-                        options: CarouselOptions(
-                            height: 400, enableInfiniteScroll: false))
+                      items: images.map(
+                        (file) {
+                          return Container(
+                              width: MediaQuery.of(context).size.width,
+                              margin: const EdgeInsets.symmetric(horizontal: 5),
+                              child: Image.file(file));
+                        },
+                      ).toList(),
+                      options: CarouselOptions(
+                          height: 400, enableInfiniteScroll: false),
+                    ),
                 ]),
               ),
             ),

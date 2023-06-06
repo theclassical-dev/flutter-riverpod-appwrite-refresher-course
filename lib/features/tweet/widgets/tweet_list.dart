@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_twitter_course/common/error_page.dart';
 import 'package:riverpod_twitter_course/common/loading_page.dart';
 import 'package:riverpod_twitter_course/features/tweet/controller/tweet_controller.dart';
+import 'package:riverpod_twitter_course/features/tweet/widgets/tweet_card.dart';
 
 class TweetList extends ConsumerWidget {
   const TweetList({super.key});
@@ -14,7 +15,7 @@ class TweetList extends ConsumerWidget {
               itemCount: tweets.length,
               itemBuilder: (context, index) {
                 final tweet = tweets[index];
-                return Text(tweet.text);
+                return TweetCard(tweet: tweet);
               },
             );
           },
