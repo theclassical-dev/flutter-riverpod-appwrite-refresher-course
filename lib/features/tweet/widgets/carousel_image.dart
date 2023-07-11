@@ -33,7 +33,7 @@ class _CarouselImageState extends State<CarouselImage> {
                 },
               ).toList(),
               options: CarouselOptions(
-                  height: 400,
+                  // height: 400,
                   viewportFraction: 1,
                   enableInfiniteScroll: false,
                   onPageChanged: ((index, reason) {

@@ -10,17 +10,26 @@ final appwriteClientProvider = Provider((ref) {
       .setSelfSigned(status: true);
 });
 
+//auth account
 final appwriteAccountProvider = Provider((ref) {
   final client = ref.watch(appwriteClientProvider);
   return Account(client);
 });
 
+//database
 final appwriteDatabaseProvider = Provider((ref) {
   final client = ref.watch(appwriteClientProvider);
   return Databases(client);
 });
 
+//image path storage
 final appwriteStorageProvider = Provider((ref) {
   final client = ref.watch(appwriteClientProvider);
   return Storage(client);
+});
+
+//realtime
+final appwriteRealtimeProvider = Provider((ref) {
+  final client = ref.watch(appwriteClientProvider);
+  return Realtime(client);
 });
