@@ -8,6 +8,7 @@ import 'package:riverpod_twitter_course/core/enums/tweet_type_enums.dart';
 import 'package:riverpod_twitter_course/core/utlis.dart';
 import 'package:riverpod_twitter_course/features/auth/controller/auth_controller.dart';
 import 'package:riverpod_twitter_course/models/tweet_model.dart';
+import 'package:riverpod_twitter_course/models/user_model.dart';
 
 final tweetControllerProvider =
     StateNotifierProvider<TweetController, bool>((ref) {
@@ -44,6 +45,20 @@ class TweetController extends StateNotifier<bool> {
   Future<List<Tweet>> getTweets() async {
     final tweetList = await _tweetApi.getTweets();
     return tweetList.map((tweet) => Tweet.fromMap(tweet.data)).toList();
+  }
+
+  Future<void> likeTweet(Tweet tweet, UserModel user) async {
+    List<String> likes = tweet.likes;
+
+    if (tweet.likes.contains(user.uid)) {
+      likes.remove(user.uid);
+    } else {
+      likes.add(user.uid);
+    }
+
+    tweet = tweet.copyWith(likes: likes);
+    final res = await _tweetApi.likeTweet(tweet);
+    res.fold((l) => null, (r) => null);
   }
 
   void shareTweet({
