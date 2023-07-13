@@ -15,6 +15,7 @@ class Tweet {
   final List<String> commentIds;
   final String id;
   final int reshareCount;
+  final String retweetedBy;
   const Tweet({
     required this.text,
     required this.hashtags,
@@ -27,6 +28,7 @@ class Tweet {
     required this.commentIds,
     required this.id,
     required this.reshareCount,
+    required this.retweetedBy,
   });
 
   Tweet copyWith({
@@ -41,20 +43,21 @@ class Tweet {
     List<String>? commentIds,
     String? id,
     int? reshareCount,
+    String? retweetedBy,
   }) {
     return Tweet(
-      text: text ?? this.text,
-      hashtags: hashtags ?? this.hashtags,
-      link: link ?? this.link,
-      imageLinks: imageLinks ?? this.imageLinks,
-      uid: uid ?? this.uid,
-      tweetType: tweetType ?? this.tweetType,
-      tweetedAt: tweetedAt ?? this.tweetedAt,
-      likes: likes ?? this.likes,
-      commentIds: commentIds ?? this.commentIds,
-      id: id ?? this.id,
-      reshareCount: reshareCount ?? this.reshareCount,
-    );
+        text: text ?? this.text,
+        hashtags: hashtags ?? this.hashtags,
+        link: link ?? this.link,
+        imageLinks: imageLinks ?? this.imageLinks,
+        uid: uid ?? this.uid,
+        tweetType: tweetType ?? this.tweetType,
+        tweetedAt: tweetedAt ?? this.tweetedAt,
+        likes: likes ?? this.likes,
+        commentIds: commentIds ?? this.commentIds,
+        id: id ?? this.id,
+        reshareCount: reshareCount ?? this.reshareCount,
+        retweetedBy: retweetedBy ?? this.retweetedBy);
   }
 
   Map<String, dynamic> toMap() {
@@ -70,7 +73,7 @@ class Tweet {
     result.addAll({'likes': likes});
     result.addAll({'commentIds': commentIds});
     result.addAll({'reshareCount': reshareCount});
-
+    result.addAll({'retweetedBy': retweetedBy});
     return result;
   }
 
@@ -87,12 +90,13 @@ class Tweet {
       commentIds: List<String>.from(map['commentIds']),
       id: map['\$id'] ?? '',
       reshareCount: map['reshareCount']?.toInt() ?? 0,
+      retweetedBy: map['retweetedBy'] ?? '',
     );
   }
 
   @override
   String toString() {
-    return 'Tweet(text: $text, hashtags: $hashtags, link: $link, imageLinks: $imageLinks, uid: $uid, tweetType: $tweetType, tweetedAt: $tweetedAt, likes: $likes, commentIds: $commentIds, id: $id, reshareCount: $reshareCount)';
+    return 'Tweet(text: $text, hashtags: $hashtags, link: $link, imageLinks: $imageLinks, uid: $uid, tweetType: $tweetType, tweetedAt: $tweetedAt, likes: $likes, commentIds: $commentIds, id: $id, reshareCount: $reshareCount, retweetedBy: $retweetedBy)';
   }
 
   @override
@@ -110,7 +114,8 @@ class Tweet {
         listEquals(other.likes, likes) &&
         listEquals(other.commentIds, commentIds) &&
         other.id == id &&
-        other.reshareCount == reshareCount;
+        other.reshareCount == reshareCount &&
+        other.retweetedBy == retweetedBy;
   }
 
   @override
@@ -125,6 +130,6 @@ class Tweet {
         likes.hashCode ^
         commentIds.hashCode ^
         id.hashCode ^
-        reshareCount.hashCode;
+        reshareCount.hashCode & retweetedBy.hashCode;
   }
 }
