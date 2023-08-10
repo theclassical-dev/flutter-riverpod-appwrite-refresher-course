@@ -24,10 +24,23 @@ final getTweetsProvider = FutureProvider((ref) async {
   return tweetController.getTweets();
 });
 
+//get replied comments to tweets
+final getRepliesToTweetsProvider =
+    FutureProvider.family((ref, Tweet tweet) async {
+  final tweetController = ref.watch(tweetControllerProvider.notifier);
+  return tweetController.getRepliesToTweet(tweet);
+});
+
 //get latest tweet provider
 final getLatestTweetProvider = StreamProvider.autoDispose((ref) {
   final tweetApi = ref.watch(tweetApiProvider);
   return tweetApi.getLatestTweet();
+});
+
+//get
+final getTweetByIdProvider = FutureProvider.family((ref, String id) async {
+  final tweetController = ref.watch(tweetControllerProvider.notifier);
+  return tweetController.getTweetById(id);
 });
 
 class TweetController extends StateNotifier<bool> {
@@ -46,6 +59,11 @@ class TweetController extends StateNotifier<bool> {
   Future<List<Tweet>> getTweets() async {
     final tweetList = await _tweetApi.getTweets();
     return tweetList.map((tweet) => Tweet.fromMap(tweet.data)).toList();
+  }
+
+  Future<Tweet> getTweetById(String id) async {
+    final tweet = await _tweetApi.getTweetById(id);
+    return Tweet.fromMap(tweet.data);
   }
 
   void likeTweet(Tweet tweet, UserModel user) async {
@@ -101,6 +119,12 @@ class TweetController extends StateNotifier<bool> {
     } else {
       _shareTextTweet(text: text, context: context, repliedTo: repliedTo);
     }
+  }
+
+//get replies comments to tweet
+  Future<List<Tweet>> getRepliesToTweet(Tweet tweet) async {
+    final documents = await _tweetApi.getRepliesToTweet(tweet);
+    return documents.map((tweet) => Tweet.fromMap(tweet.data)).toList();
   }
 
   void _shareImageTweet({
